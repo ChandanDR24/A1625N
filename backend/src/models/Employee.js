@@ -26,9 +26,13 @@ const Employee = sequelize.define("Employee", {
     type: DataTypes.ENUM("available", "busy", "on-leave"),
     defaultValue: "available",
   },
+  skills: {
+    type: DataTypes.STRING, // Stores required skills (comma-separated)
+    allowNull: false,
+  }
 });
 
-sequelize.sync()
+sequelize.sync({ alter: true })
   .then(() => console.log("✅ Employee Model Synced!"))
   .catch(err => console.error("❌ Employee Model Sync Error:", err));
 

@@ -14,6 +14,14 @@ app.use(express.json());
 
 app.use("/api", taskRoutes);
 app.use("/api", employeeRoutes);
+app.post("/login", (req, res) => {
+  const { password } = req.body;
+  if (password === "admin") {
+    return res.json({ success: true, message: "Login successful" });
+  } else {
+    return res.status(401).json({ success: false, message: "Invalid password" });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
